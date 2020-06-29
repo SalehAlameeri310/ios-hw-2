@@ -9,79 +9,114 @@
 import UIKit
 
 class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    var membersNamesArray  : [String] = [""]
     
-    var membernamearray  : [String] = [""]
-    
-    var ConvertToletter = true
+    var convertToLetter = true
     @IBOutlet weak var secretsocietynamelabel: UILabel!
-    @IBOutlet weak var nametextfield: UITextField!
-    @IBAction func Addmember(_ sender: Any) {
+       @IBOutlet weak var nametextfield: UITextField!
+       @IBAction func Addmember(_ sender: Any) {
         
         let member = nametextfield.text!
         
-        // قم بإضافة المتغير member إلى المصفوفة membernamearray هنا
-       
-         
-              // النهايه----------------------
-       
+        // MARK: -   1️⃣ تحت الخط membersNamesArray إلي المصفوفه memberقم بإضافة المتغير
+        membersNamesArray.append(member)
+        
+        // MARK: -   النهاية
         
         nametextfield.text = ""
     }
     
-
-    // اكتب الداله secretnametoletter هنا
-        
-  
-        // النهايه----------------------
-        
-        
     
-    @IBAction func Letterbutton(_ sender: Any) {
-      
+    
+    
+    @IBAction func letterButton(_ sender: Any) {
         
-    // قم باستدعاء الداله secretnametoletter داخل المتغير functioncall
+        // MARK: -  4️⃣ functionCall داخل المتغير  secretNameLetter قم باستدعاء الدالة
         
-        var functioncall =
-                  
-                   // النهايه----------------------
-            
-             secretsocietynamelabel.text =  functioncall
+        let functionCall = secretNameLetter(membernamearray: membersNamesArray)
+        
+        
+        // MARK: -   النهاية
+        
+        
+        secretsocietynamelabel.text =  functionCall
     }
     
     
     
     
+    @IBAction func emojiButton(_ sender: Any) {
+        
+        
+        
+        // MARK: -  5️⃣ functionCall داخل المتغير  secretNameEmoji قم باستدعاء الدالة
+        
+        let functionCall = secretNametoEmoji(membernamearray: membersNamesArray)
+        
+        // MARK: -   النهاية
+        
+        secretsocietynamelabel.text =  functionCall
+        
+        
+    }
     
-       // اكتب الداله secretnametoEmoji  هنا
-           
-           
-        
-           
-         
-                  // النهايه----------------------
-           
     
-    @IBAction func emojibutton(_ sender: Any) {
-      
+    
+    
+    // MARK: - 2️⃣ تحت هذا الخط secretNameLetter قم بكتابة الداله
+    var name = ""
+    
+    func secretNameLetter (membernamearray:[String])-> String
+    {
+            for i in 0..<membersNamesArray.count {
+                name += String(membersNamesArray[i].prefix(1).uppercased())
+            }
+            return name
         
-        
-        
-             // قم باستدعاء الداله secretnametoEmoji داخل المتغير functioncall
-                
-        var functioncall =
+        }
+    
 
-            // النهايه----------------------
+    // MARK: -   النهاية
+    
+    
+    
+    
+    
+    // MARK: - 3️⃣ تحت هذا الخط secretNameEmoji قم بكتابة الداله
+   
+    var emojisWithLetter = ["A":"🐜","B":"🐻","C":"🐱","D":"🐶","E":"🐘","F":"🐠","G":"🦎","H":"🐎","I":"📞","J":"🍑","K":"🏛","L":"🚩","M": "🕓","N":"🎊","O":"💩","P":"🖼","Q":"🛍","R":"💝","S":"☯️","T":"🟣","U":"😁","V":"🌅","W":"🦷","X":"🧩","Y":"🎹","Z":"🖥"]
+    var finalstring = ""
+    var firstchar = ""
+    func secretNametoEmoji (membernamearray:[String])-> String {
+   for i in membersNamesArray {
+        
+    firstchar =  (String(i.prefix(1).uppercased()))
+    for (letter, emoji) in emojisWithLetter {
+        if letter == firstchar {
+            finalstring.append(emoji)
+        }
+        
+        
+        
+    }
+   
+
+    
+    /*  if  membersNamesArray[i].prefix(1) == letters[i] {
+                //print(",ICH",membersNamesArray[i].prefix(1))
+                //print(letters[i])
+                finalstring += emojis[i]
+            }*/
      
-        secretsocietynamelabel.text =  functioncall
-       
+        }
+            return finalstring
     }
     
-  
+    
+    // MARK: -   النهاية
     
     
-}
+    
 
+
+}
